@@ -1,0 +1,39 @@
+# project: cj7kroetv02vm0178ezeps6qf
+# version: 2
+
+type User implements Node {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type File implements Node {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  contentType: String!
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  url: String! @isUnique
+}
+
+type Conference implements Node {
+  id: ID! @isUnique
+  name: String!
+  topic: String
+  url: String!
+  twitter: String
+  city: String
+  stateProvince: String!
+  country: String!
+  eventStartDate: String
+  eventEndDate: String
+  cfpStartDate: String
+  cfpEndDate: String
+  codeOfConduct: Boolean!
+  latitude: Float!
+  longitude: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
