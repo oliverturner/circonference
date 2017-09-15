@@ -8,8 +8,6 @@ const Main = styled.div`
   flex: 1;
 
   display: flex;
-
-  background: hotpink;
 `
 
 const Component = () => (

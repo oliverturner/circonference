@@ -1,4 +1,4 @@
-# project: cj7kroetv02vm0178ezeps6qf
+# project: cj7lvqnej074f0168gpa04872
 # version: 2
 
 type User implements Node {
@@ -20,20 +20,20 @@ type File implements Node {
 
 type Conference implements Node {
   id: ID! @isUnique
-  name: String!
+  name: String
   topic: String
-  url: String!
+  url: String
   twitter: String
   city: String
-  stateProvince: String!
-  country: String!
-  eventStartDate: String
-  eventEndDate: String
-  cfpStartDate: String
-  cfpEndDate: String
+  stateProvince: String
+  country: String
+  eventStartDate: DateTime
+  eventEndDate: DateTime
+  cfpStartDate: DateTime
+  cfpEndDate: DateTime
   codeOfConduct: Boolean!
-  latitude: Float!
-  longitude: Float!
+  latitude: Float
+  longitude: Float
   createdAt: DateTime!
   updatedAt: DateTime!
 }

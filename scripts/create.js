@@ -1,10 +1,8 @@
-// @flow
-
 import writeFile from "write";
 import { getChunkedRows } from "./utils";
 
-import data from "./conferences.json"
-import mutation from "./conferences";
+import data from "./data/conferences.json"
+import mutation from "./mutations/conferences";
 
 const chunkNum = 50;
 
@@ -35,10 +33,11 @@ const createRecords = async (records) => {
 };
 
 const init = async () => {
-  const dest = `./__fixtures__/simple/conferences.json`;
+  const dest = `./__fixtures__/conferences.json`;
   const ids = await createRecords([]);
+  const arr = ids.reduce((a, b) => [...a, ...b])
 
-  writeFile(dest, JSON.stringify(ids, null, 2), onError);
+  writeFile(dest, JSON.stringify(arr, null, 2), onError);
 
   console.log(`Created ${ids.reduce((n, x) => n + x.length, 0)} records`);
 };

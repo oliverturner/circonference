@@ -4,8 +4,6 @@ import GMap from "google-map-react";
 
 const Map = styled.div`
   flex: 1;
-
-  background: palevioletred;
 `;
 
 class Component extends React.Component {
@@ -14,12 +12,12 @@ class Component extends React.Component {
     zoom: 5
   };
 
-  constructor () {
+  constructor() {
     super();
 
     this.config = {
-      key: "APIKEY"
-    }
+      key: process.env.REACT_APP_MAP_API_KEY
+    };
   }
 
   onZoomChange = zoom => {
@@ -30,8 +28,8 @@ class Component extends React.Component {
     console.log("point", point);
   };
 
-  onChange = (data) => {
-    console.log("onChange", data)
+  onChange = data => {
+    console.log("onChange", data);
     // this.onCenterChange(center);
     // this.onZoomChange(zoom);
   };

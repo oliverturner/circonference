@@ -5,7 +5,7 @@ module.exports = {
     node: true,
     jest: true
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
+  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:flowtype/recommended"],
   parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
@@ -14,7 +14,7 @@ module.exports = {
     },
     sourceType: "module"
   },
-  plugins: ["react"],
+  plugins: ["react", "flowtype"],
   rules: {
     "no-console": "off",
     "react/prop-types": "off"
