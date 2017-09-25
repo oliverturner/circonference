@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import Conference from "./conference";
-import confs from "../../__fixtures__/conferences.json";
+import confs from "../../../../__fixtures__/conferences.json";
 
 const Column = styled.div`
   flex: 1;
