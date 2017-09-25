@@ -10,11 +10,11 @@ const Main = styled.div`
   display: flex;
 `
 
-const Component = () => (
+const MainWrapper = () => (
   <Main>
     <Map />
     <List/>
   </Main>
 );
 
-export default Component;
+export default MainWrapper;

@@ -21,7 +21,7 @@ const Footer = styled.footer`
   }
 `;
 
-const Component = () => (
+const FooterWrapper = () => (
   <Footer>
     <div>
       <p>
@@ -41,4 +41,4 @@ const Component = () => (
   </Footer>
 );
 
-export default Component;
+export default FooterWrapper;
