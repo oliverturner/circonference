@@ -12,11 +12,12 @@ class Component extends React.Component {
     zoom: 5
   };
 
-  constructor() {
+  constructor(props) {
     super();
 
     this.config = {
-      key: process.env.REACT_APP_MAP_API_KEY
+      key: process.env.REACT_APP_MAP_API_KEY,
+      defaultCenter: props.center 
     };
   }
 

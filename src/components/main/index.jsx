@@ -1,8 +1,9 @@
 import * as React from "react";
 import styled from "styled-components"
 
-import Map from "../map";
-import List from "../list";
+import Map from "./components/map";
+import List from "./components/list";
+import Form from "./components/form";
 
 const Main = styled.div`
   flex: 1;
@@ -12,6 +13,7 @@ const Main = styled.div`
 
 const Component = () => (
   <Main>
+    <Form />
     <Map />
     <List/>
   </Main>
