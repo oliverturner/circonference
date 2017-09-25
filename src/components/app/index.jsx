@@ -5,7 +5,7 @@ import Header from "./components/header";
 import Main from "../main";
 import Footer from "./components/footer";
 
-const Component = () => (
+const AppWrapper = () => (
   <App>
     <AppHeader>
       <Header />
@@ -19,4 +19,4 @@ const Component = () => (
   </App>
 );
 
-export default Component;
+export default AppWrapper;

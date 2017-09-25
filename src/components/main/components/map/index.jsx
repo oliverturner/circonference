@@ -6,7 +6,7 @@ const Map = styled.div`
   flex: 1;
 `;
 
-class Component extends React.Component {
+class MapWrapper extends React.Component {
   static defaultProps = {
     center: { lat: 51.56, lng: -0.14 },
     zoom: 5
@@ -54,4 +54,4 @@ class Component extends React.Component {
   }
 }
 
-export default Component;
+export default MapWrapper;

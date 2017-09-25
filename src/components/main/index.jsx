@@ -11,7 +11,7 @@ const Main = styled.div`
   display: flex;
 `
 
-const Component = () => (
+const MainWrapper = () => (
   <Main>
     <Form />
     <Map />
@@ -19,4 +19,4 @@ const Component = () => (
   </Main>
 );
 
-export default Component;
+export default MainWrapper;

@@ -6,6 +6,7 @@ src
 scripts
 
 [libs]
+tools/flow
 
 [lints]
 all=warn
