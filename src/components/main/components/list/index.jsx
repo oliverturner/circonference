@@ -1,44 +1,70 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import Filter from "./filter";
 import Conference from "./conference";
 import confs from "../../../../__fixtures__/conferences.json";
 
 const Column = styled.div`
-  flex: 1;
-  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+
+  overflow: hidden;
+`;
+
+const Heading = styled.div`
   display: flex;
-  flex-direction: column;
+  padding: 10px 5px;
+
+  > h1 {
+    flex: 1;
+
+    margin: 0;
+    font-size: inherit;
+  }
+
+  > p {
+    flex: 0 0 130px;
+
+    margin: 0 0 0 20px;
+    text-align: center;
+  }
 `;
 
-const Filter = styled.form``;
-const FilterLabel = styled.label``;
-const FilterInput = styled.input``;
+const ListWrap = styled.div`overflow-y: auto;`;
 
-const List = styled.div`
-  flex: 1;
-
-  overflow-y: auto;
-  background: lemonchiffon;
-`;
+const List = styled.div``;
 
 const today = new Date().getTime();
-const filterId = "filter"
 
-const ListWrapper = () => (
-  <Column>
-    <Filter>
-      <FilterLabel htmlFor={filterId}>
-        Filter
-        <FilterInput id={filterId} placeholder="filter" />
-      </FilterLabel>
-    </Filter>
-    <List>
-      {confs
-        .filter(c => new Date(c.eventStartDate).getTime() >= today)
-        .sort((a, b) => new Date(a.eventStartDate) - new Date(b.eventStartDate))
-        .map(conf => <Conference key={conf.id} {...conf} />)}
-    </List>
+const getConfs = confs =>
+  confs
+    .filter(c => new Date(c.eventStartDate).getTime() >= today)
+    .map(c => {
+      return {
+        ...c,
+        cfpStartDate: new Date(c.cfpStartDate),
+        cfpEndDate: new Date(c.cfpEndDate),
+        eventStartDate: new Date(c.eventStartDate),
+        eventEndDate: new Date(c.eventEndDate)
+      };
+    })
+    .sort((a, b) => a.eventStartDate - b.eventStartDate);
+
+const ListWrapper = ({ style }) => (
+  <Column style={style}>
+    <Filter />
+    <Heading>
+      <h1>Conference</h1>
+      <p>CFP</p>
+      <p>Event</p>
+    </Heading>
+    <ListWrap>
+      <List>
+        {getConfs(confs).map(conf => <Conference key={conf.id} {...conf} />)}
+      </List>
+    </ListWrap>
   </Column>
 );
 

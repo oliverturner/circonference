@@ -1,7 +1,7 @@
 import * as React from "react";
 import geocoder from "geocoder";
 
-const Form = () => {
+const Form = ({style}) => {
   geocoder.reverseGeocode(
     33.7489,
     -84.3789,
@@ -13,7 +13,7 @@ const Form = () => {
     }
   );
 
-  return <form />;
+  return <form style={style}/>;
 };
 
 export default Form;

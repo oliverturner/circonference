@@ -11,6 +11,7 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
+  margin: 0;
   font-size: large;
   font-weight: normal;
 `;
