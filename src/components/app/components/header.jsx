@@ -11,28 +11,15 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
+  margin: 0;
   font-size: large;
   font-weight: normal;
 `;
 
-const Rubric = styled.div`
-  p {
-    margin: 5px 0 0;
-
-    &:first-child {
-      margin: 0;
-    }
-  }
-`;
-
-const Component = () => (
+const HeaderWrapper = () => (
   <Header>
     <Title>Conference Radar</Title>
-    <Rubric>
-      <p>Conference not listed? Notice an issue?</p>
-      <p>Contribute to this project on GitHub!</p>
-    </Rubric>
   </Header>
 );
 
-export default Component;
+export default HeaderWrapper;
