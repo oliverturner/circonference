@@ -3,6 +3,8 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import DateRange from "./daterange"
+
 const Link = styled.a`
   display: flex;
   justify-content: space-between;
@@ -33,49 +35,12 @@ const Row = styled.div`
   justify-content: flex-end;
 `;
 
-const DateRange = styled.div`margin: 0 0 0 20px;`;
-
-const DateItem = styled.p`
-  margin: 0;
-  text-align: right;
-`;
-
-const DateLabel = styled.span`
-  display: inline-block;
-  margin-right: 5px;
-  font-variant: small-caps;
-  color: #666;
-`;
-
-const locale = navigator.language || navigator.userLanguage;
-const format = { year: "numeric", month: "short", day: "numeric" };
-const today = new Date();
-
-const parseDate = (label: string, date: Date) => {
-  if (date && date >= today) {
-    return (
-      <DateItem>
-        <DateLabel>{label}</DateLabel>
-        {date.toLocaleDateString(locale, format)}
-      </DateItem>
-    );
-  }
-
-  return <DateItem>&nbsp;</DateItem>;
-};
-
 const ConferenceWrapper = (props: Conference) => (
   <Link href={props.url}>
     <Title>{props.name}</Title>
     <Row>
-      <DateRange>
-        {parseDate("start", props.cfpStartDate)}
-        {parseDate("end", props.cfpEndDate)}
-      </DateRange>
-      <DateRange>
-        {parseDate("start", props.eventStartDate)}
-        {parseDate("end", props.eventEndDate)}
-      </DateRange>
+      <DateRange start={props.cfpStartDate} end={props.cfpEndDate} />
+      <DateRange start={props.eventStartDate} end={props.eventEndDate} />
     </Row>
   </Link>
 );
