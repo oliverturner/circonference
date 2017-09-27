@@ -7,7 +7,7 @@ import List from "./components/list";
 
 const Main = styled.div`
   display: grid;
-  grid-template-columns: [map] 1fr [list] minmax(auto, 600px);
+  grid-template-columns: [map] 1fr [list] minmax(auto, 450px);
   grid-template-rows: 0 1fr;
 
   overflow: hidden;
