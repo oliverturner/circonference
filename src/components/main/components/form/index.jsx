@@ -1,7 +1,14 @@
 import * as React from "react";
+import styled from "styled-components";
 import geocoder from "geocoder";
 
-const Form = ({style}) => {
+const Form = styled.form`
+  position: absolute;
+  
+  background: white;
+`;
+
+const FormWrapper = ({ style }) => {
   geocoder.reverseGeocode(
     33.7489,
     -84.3789,
@@ -13,7 +20,32 @@ const Form = ({style}) => {
     }
   );
 
-  return <form style={style}/>;
+  return (
+    <Form style={style}>
+      <ul>
+        <li>
+          <label htmlFor="" />
+          <input type="text" />
+        </li>
+        <li>
+          <label htmlFor="" />
+          <input type="text" />
+        </li>
+        <li>
+          <label htmlFor="" />
+          <input type="text" />
+        </li>
+        <li>
+          <label htmlFor="" />
+          <input type="text" />
+        </li>
+        <li>
+          <label htmlFor="" />
+          <input type="text" />
+        </li>
+      </ul>
+    </Form>
+  );
 };
 
-export default Form;
+export default FormWrapper;
