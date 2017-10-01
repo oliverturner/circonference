@@ -1,40 +1,25 @@
 // @flow
 
 import * as React from "react";
-import { distanceInWords } from "date-fns";
+import { format, differenceInCalendarMonths, differenceInDays } from "date-fns";
 import styled from "styled-components";
 
-const DateRange = styled.div`margin: 0 0 0 20px;`;
-
-const DateItem = styled.p`
-  margin: 0;
+const DateRange = styled.div`
+  margin: 0 0 0 20px;
   text-align: right;
 `;
 
-const DateLabel = styled.span`
-  display: inline-block;
-  margin-right: 5px;
-  text-transform: uppercase;
-  font-size: 11px;
-  color: #666;
-`;
+const DateItem = styled.p`margin: 0;`;
 
-const locale = navigator.language;
-const fmt = { year: "numeric", month: "short", day: "numeric" };
+// const DateLabel = styled.span`
+//   display: inline-block;
+//   margin-right: 5px;
+//   text-transform: uppercase;
+//   font-size: 11px;
+//   color: #666;
+// `;
+
 const today = new Date();
-
-const parseDate = (label: string, localeDate: string, date: Date) => {
-  if (date && date >= today) {
-    return (
-      <DateItem>
-        <DateLabel>{label}</DateLabel>
-        {localeDate}
-      </DateItem>
-    );
-  }
-
-  return null;
-};
 
 type Props = {
   start: Date,
@@ -42,17 +27,26 @@ type Props = {
 };
 
 const Component = ({ start, end }: Props) => {
-  const locStart = start.toLocaleDateString(locale, fmt);
-  const locEnd = end.toLocaleDateString(locale, fmt);
+  const len = differenceInDays(end, start) + 1;
+  const spansMonth = differenceInCalendarMonths(end, start) > 0;
 
-  if (locStart === locEnd || locEnd.length === 0) {
-    return <DateRange>{parseDate("on", locStart, start)}</DateRange>;
+  if (start < today || end < today) return null;
+
+  if (len === 1) {
+    return (
+      <DateRange>
+        <DateItem>{format(end, "Do MMM YYYY")}</DateItem>
+      </DateRange>
+    );
   }
 
   return (
     <DateRange>
-      {parseDate("", locStart, start)}
-      {parseDate(distanceInWords(start, end), locEnd, end)}
+      <DateItem>
+        {format(start, spansMonth ? "Do MMM" : "Do")}
+        -
+        {format(end, "Do MMM YYYY")}
+      </DateItem>
     </DateRange>
   );
 };

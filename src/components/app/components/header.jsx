@@ -12,13 +12,14 @@ const Header = styled.header`
 
 const Title = styled.h1`
   margin: 0;
-  font-size: large;
+  font-family: Exo;
+  font-size: 24px;
   font-weight: normal;
 `;
 
 const HeaderWrapper = () => (
   <Header>
-    <Title>Conference Radar</Title>
+    <Title>Conference Scanner</Title>
   </Header>
 );
 

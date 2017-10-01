@@ -4235,16 +4235,16 @@
   {
     "city": "Providence",
     "name": "Elixir with Love",
-    "eventEndDate": "2017-11-10T06:00:00.000Z",
-    "latitude": 41.8239891,
-    "url": "www.elixir-with-love.com",
-    "cfpEndDate": "2017-10-01T05:00:00.000Z",
-    "country": "USA",
     "cfpStartDate": "1970-01-01T00:00:00.000Z",
+    "cfpEndDate": "2017-10-01T05:00:00.000Z",
+    "eventStartDate": "2017-11-10T06:00:00.000Z",
+    "eventEndDate":   "2017-11-10T06:00:00.000Z",
+    "url": "www.elixir-with-love.com",
+    "country": "USA",
+    "latitude": 41.8239891,
     "longitude": -71.4128343,
     "stateProvince": "RI",
     "id": "cj7m22ui76x1f0115k10zs9ap",
-    "eventStartDate": "2017-11-10T06:00:00.000Z",
     "codeOfConduct": true,
     "topic": "A conference for Elixir and inclusion",
     "twitter": "@elixir_w_love"
@@ -9607,7 +9607,6 @@
   {
     "city": "Des Moines",
     "name": "PLIBMTTBHGATY",
-    "eventEndDate": "1970-01-01T00:00:00.000Z",
     "latitude": 41.6005448,
     "url": "https://www.tikly.co/events/2209",
     "cfpEndDate": "1970-01-01T00:00:00.000Z",
@@ -9617,6 +9616,7 @@
     "stateProvince": "IA",
     "id": "cj7m22x8z7nk60153kjp5mj4r",
     "eventStartDate": "2017-10-07T05:00:00.000Z",
+    "eventEndDate": "2017-10-07T05:00:00.000Z",
     "codeOfConduct": false,
     "topic": "Learning new programming languages, unconference style",
     "twitter": "@ladyDev"
