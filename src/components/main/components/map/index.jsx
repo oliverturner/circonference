@@ -2,12 +2,16 @@
 
 import * as React from "react";
 import styled from "styled-components";
-import GMap from "google-map-react";
+import ReactMapboxGl from "react-mapbox-gl";
 
-const Map = styled.div`
+const MapWrapper = styled.div`
   position: relative;
   background: mediumseagreen;
 `;
+
+const Map = ReactMapboxGl({
+  accessToken: "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A"
+});
 
 const getLocation = async options => {
   return new Promise(function(resolve, reject) {
@@ -86,16 +90,9 @@ class MapWrapper extends React.Component<Props, State> {
     console.log(this.state);
 
     return (
-      <Map style={this.props.style}>
-        <GMap
-          bootstrapURLKeys={this.props.mapConfig}
-          center={this.state.location}
-          defaultCenter={this.props.mapConfig.defaultLocation}
-          defaultZoom={this.props.zoom}
-          onChildClick={this.onChildClick}
-          onChange={this.onChange}
-        />
-      </Map>
+      <MapWrapper style={this.props.style}>
+        <Map style="mapbox://styles/mapbox/streets-v8"/>
+      </MapWrapper>
     );
   }
 }
