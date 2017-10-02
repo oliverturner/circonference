@@ -1,100 +1,96 @@
 // @flow
 
 import * as React from "react";
-import styled from "styled-components";
 import ReactMapboxGl from "react-mapbox-gl";
 
-const MapWrapper = styled.div`
-  position: relative;
-  background: mediumseagreen;
-`;
+import { MapWrapper } from "./styles.js";
+
+type MapPoint = [number, number];
+
+type Props = {
+  style: any,
+  mapSettings: {
+    zoom: [number],
+    center: MapPoint
+  }
+};
+
+type State = {
+  rendered: boolean,
+  zoom: [number],
+  center: MapPoint
+};
+
+type GeoLocation = {
+  coords: { latitude: number, longitude: number }
+};
 
 const Map = ReactMapboxGl({
-  accessToken: "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A"
+  accessToken:
+    "pk.eyJ1Ijoib2xpdmVydHVybmVyIiwiYSI6ImNqOGFkZGFobjBjMXozM3FyMDAweGg4NWMifQ.EfJv0SZRUmVHmVdt-haIMw",
+  attributionControl: false
 });
 
-const getLocation = async options => {
+const getLocation = () => {
   return new Promise(function(resolve, reject) {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+      navigator.geolocation.getCurrentPosition(resolve, reject);
     } else {
       resolve(localStorage.getItem("geolocation"));
     }
   });
 };
 
-type Props = {
-  style: any,
-  zoom: number,
-  mapConfig: {
-    key: string,
-    defaultLocation: { lat: number, lng: number }
-  }
+const parseCoordinates = ({ coords }: GeoLocation): MapPoint => {
+  const { latitude, longitude } = coords;
+  return [longitude, latitude];
 };
 
-type State = {
-  location: { lat: number, lng: number }
-};
-
-class MapWrapper extends React.Component<Props, State> {
-  // TODO: first query localstorage then fall back to hard coded val
+class MapComponent extends React.Component<Props, State> {
   static defaultProps = {
-    zoom: 4,
-    mapConfig: {
-      key: process.env.REACT_APP_MAP_API_KEY,
-      defaultCenter: { lat: 51.56, lng: -10.14 }
+    apiKey: process.env.REACT_APP_MAP_API_KEY,
+    mapSettings: {
+      zoom: [1],
+      center: [51.56, -10.14]
     }
   };
 
   constructor(props: Props) {
     super();
 
-    const geolocation = localStorage.getItem("geolocation");
-    const location = typeof geolocation === "string"
-      ? JSON.parse(geolocation)
-      : props.mapConfig.defaultLocation;
+    const stored = localStorage.getItem("mapSettings");
+    const mapState = typeof stored === "string" ? JSON.parse(stored) : {};
 
-    this.state = {
-      location
-    };
+    this.state = { ...props.mapSettings, ...mapState, rendered: false };
 
     getLocation()
-      .then(({ coords }: Position) => {
-        const { latitude: lat, longitude: lng } = coords;
-        localStorage.setItem("geolocation", JSON.stringify({ lat, lng }));
-
-        this.setState(() => ({ location: { lat, lng } }));
+      .then(parseCoordinates)
+      .then(center => {
+        const mapSettings = { center, zoom: [4] };
+        localStorage.setItem("mapSettings", JSON.stringify(mapSettings));
+        this.setState((prevState: State) => ({ ...prevState, ...mapSettings }));
       })
-      .catch(e => console.log(e));
+      .catch((e: Error) => console.log(e));
   }
 
-  onZoomChange = zoom => {
-    console.log("zoom", zoom);
-  };
-
-  onCenterChange = point => {
-    console.log("point", point);
-  };
-
-  onChange = ({center, zoom}) => {
-    console.log("onChange", center, zoom);
-    this.onCenterChange(center);
-    this.onZoomChange(zoom);
-  };
-
-  onChildClick = (key, childProps) => {
-    this.onCenterChange([childProps.lat, childProps.lng]);
+  onMapRender = () => {
+    if (!this.state.rendered) this.setState({ rendered: true });
   };
 
   render() {
     console.log(this.state);
 
     return (
-      <MapWrapper style={this.props.style}>
-        <Map style="mapbox://styles/mapbox/streets-v8"/>
+      <MapWrapper style={this.props.style} rendered={this.state.rendered}>
+        <Map
+          style="mapbox://styles/mapbox/dark-v9"
+          zoom={this.state.zoom}
+          center={this.state.center}
+          onRender={this.onMapRender}
+        />
       </MapWrapper>
     );
   }
 }
 
-export default MapWrapper;
+export default MapComponent;

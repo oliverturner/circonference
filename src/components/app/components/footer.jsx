@@ -11,7 +11,7 @@ const Note = styled.div`
 
   margin: 0;
   padding: 10px;
-  background: #333;
+  background: #191a1a;
   color: #aaa;
 
   &:nth-child(even) {

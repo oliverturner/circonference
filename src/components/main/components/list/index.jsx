@@ -11,6 +11,7 @@ const Column = styled.div`
   grid-template-rows: auto auto 1fr;
 
   overflow: hidden;
+  background: #999;
 `;
 
 const Heading = styled.div`

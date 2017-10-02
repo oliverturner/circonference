@@ -16,7 +16,7 @@ const Link = styled.a`
   color: inherit;
 
   &:nth-child(odd) {
-    background: #eee;
+    background: #888;
   }
 `;
 
