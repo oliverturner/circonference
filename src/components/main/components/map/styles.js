@@ -6,7 +6,8 @@ export const MapWrapper = styled.div`
   position: relative;
   opacity: 0;
   opacity: ${({ rendered }) => (rendered ? 1 : 0)};
-
+  z-index: 1;
+  
   .mapboxgl-map {
     height: 100%;
   }

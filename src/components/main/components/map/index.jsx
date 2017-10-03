@@ -26,8 +26,7 @@ type GeoLocation = {
 };
 
 const Map = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1Ijoib2xpdmVydHVybmVyIiwiYSI6ImNqOGFkZGFobjBjMXozM3FyMDAweGg4NWMifQ.EfJv0SZRUmVHmVdt-haIMw",
+  accessToken: process.env.REACT_APP_MAPBOX_APIKEY,
   attributionControl: false
 });
 

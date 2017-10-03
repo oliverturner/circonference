@@ -2,50 +2,60 @@ import * as React from "react";
 import styled from "styled-components";
 import geocoder from "geocoder";
 
-const Form = styled.form`
-  position: absolute;
-  
-  background: white;
+const FormWrap = styled.div`
+  position: relative;
 `;
 
-const FormWrapper = ({ style }) => {
+const Form = styled.form`
+  transition: 1s top;
+
+  position: absolute;
+  top: ${({ displayed }) => (displayed ? 0 : "-100px")};
+  width: 100%;
+  background: white;
+  z-index: 2;
+`;
+
+const FormComponent = ({ displayed, toggleForm }) => {
   geocoder.reverseGeocode(
     33.7489,
     -84.3789,
     function(err, data) {
-      console.log(data);
+      console.log("geocoder.reverseGeocode", data);
     },
     {
-      key: process.env.REACT_APP_MAP_API_KEY
+      key: process.env.REACT_APP_GOOGLEMAP_APIKEY
     }
   );
 
   return (
-    <Form style={style}>
-      <ul>
-        <li>
-          <label htmlFor="" />
-          <input type="text" />
-        </li>
-        <li>
-          <label htmlFor="" />
-          <input type="text" />
-        </li>
-        <li>
-          <label htmlFor="" />
-          <input type="text" />
-        </li>
-        <li>
-          <label htmlFor="" />
-          <input type="text" />
-        </li>
-        <li>
-          <label htmlFor="" />
-          <input type="text" />
-        </li>
-      </ul>
-    </Form>
+    <FormWrap displayed={displayed}>
+      <Form displayed={displayed} onClick={toggleForm}>
+        <ul>
+          <li>
+            <label htmlFor="" />
+            <input type="text" />
+          </li>
+          <li>
+            <label htmlFor="" />
+            <input type="text" />
+          </li>
+          <li>
+            <label htmlFor="" />
+            <input type="text" />
+          </li>
+          <li>
+            <label htmlFor="" />
+            <input type="text" />
+          </li>
+          <li>
+            <label htmlFor="" />
+            <input type="text" />
+          </li>
+        </ul>
+      </Form>
+    </FormWrap>
   );
 };
 
-export default FormWrapper;
+export default FormComponent;
