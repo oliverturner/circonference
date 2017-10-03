@@ -4,6 +4,7 @@
   "dependencies": {
     "apollo-cache-inmemory": "0.2.0-beta.0",
     "apollo-client": "2.0.0-beta.0",
+    "apollo-link": "0.7.0",
     "apollo-link-http": "0.7.0",
     "date-fns": "1.28.5",
     "formik": "0.9.3",
@@ -19,7 +20,7 @@
     "react-mapbox-gl": "2.6.0",
     "react-media": "1.6.1",
     "react-scripts": "1.0.14",
-    "source-map-explorer": "1.4.0",
+    "source-map-explorer": "1.5.0",
     "styled-components": "2.2.0"
   },
   "devDependencies": {
