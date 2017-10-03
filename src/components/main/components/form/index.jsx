@@ -7,7 +7,7 @@ const FormWrap = styled.div`
 `;
 
 const Form = styled.form`
-  transition: 1s top;
+  transition: 0.5s top;
 
   position: absolute;
   top: ${({ displayed }) => (displayed ? 0 : "-100px")};

@@ -9,15 +9,15 @@ import styled from "styled-components";
 
 export const App = styled.div`
 display: grid;
-grid-template-rows: [head] auto [main] 1fr [footer] auto;
+grid-template-rows: auto 1fr auto;
 height: 100vh;
 `;
 
 const AppWrapper = () => (
   <App>
-    <Header style={{ gridRow: "head" }} />
-    <Main style={{ gridRow: "main" }} />
-    <Footer style={{ gridRow: "footer" }} />
+    <Header />
+    <Main />
+    <Footer />
   </App>
 );
 

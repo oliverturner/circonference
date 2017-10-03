@@ -3,7 +3,7 @@ import Loadable from "react-loadable";
 import Media from "react-media";
 import styled from "styled-components";
 
-import Form from "./components/form";
+// import Form from "./components/form";
 import List from "./components/list";
 import Spinner from "./components/spinner";
 
@@ -12,39 +12,35 @@ const MapLoader = Loadable({
   loading: Spinner
 });
 
-const Main = styled.div`
-  position: relative;
-  overflow: hidden;
-`;
+const Main = styled.div`overflow: hidden;`;
 
 const Content = styled.div`
   display: grid;
-  grid-template-columns: [map] 1fr [list] minmax(auto, 450px);
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr minmax(auto, 450px);
+  
+  height: 100%;
 `;
 
 class MainWrapper extends React.Component {
   state = {
     formDisplayed: true
-  }
+  };
 
   toggleForm = () => {
     this.setState({ formDisplayed: !this.state.formDisplayed });
   };
 
   render() {
-    const { style } = this.props;
-
+    // <Form displayed={this.state.formDisplayed} toggleForm={this.toggleForm} />
     return (
-      <Main style={style}>
-        <Form displayed={this.state.formDisplayed} toggleForm={this.toggleForm} />
+      <Main>
         <Content>
           <Media query="(min-width: 768px)">
             {matches =>
-              matches ? (
-                <MapLoader style={{ gridColumn: "map", gridRow: 2 }} />
-              ) : null}
+              matches ? <MapLoader style={{ gridArea: "1/1/1/1" }} /> : null}
           </Media>
-          <List style={{ gridColumn: "list", gridRow: 2 }} />
+          <List style={{ gridArea: "1/2/1/2" }} />
         </Content>
       </Main>
     );

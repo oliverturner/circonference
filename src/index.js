@@ -12,7 +12,7 @@ import registerServiceWorker from "./registerServiceWorker";
 
 const client = new ApolloClient({
   link: new Link({
-    uri: `https://v7mnw3m03.lp.gql.zone/graphql`
+    uri: `https://api.graph.cool/simple/v1/cj7lvqnej074f0168gpa04872`
   }),
   // cache: new Cache()
   // for SSR, use:

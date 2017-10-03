@@ -13,6 +13,7 @@ const Note = styled.div`
   padding: 10px;
   background: #191a1a;
   color: #aaa;
+  opacity: 0.5;
 
   &:nth-child(even) {
     text-align: right;

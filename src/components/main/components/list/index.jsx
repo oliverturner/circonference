@@ -35,8 +35,6 @@ const Heading = styled.div`
 
 const ListWrap = styled.div`overflow-y: auto;`;
 
-const List = styled.div``;
-
 const today = new Date().getTime();
 
 const getConfs = confs =>
@@ -62,9 +60,7 @@ const ListWrapper = ({ style }) => (
       <p>Event</p>
     </Heading>
     <ListWrap>
-      <List>
-        {getConfs(confs).map(conf => <Conference key={conf.id} {...conf} />)}
-      </List>
+      {getConfs(confs).map(conf => <Conference key={conf.id} {...conf} />)}
     </ListWrap>
   </Column>
 );
